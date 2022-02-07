@@ -115,7 +115,7 @@ class BridgeServer extends Server {
     _handleReady(url) {
         this._debug(`[READY] Bridge operational on ${url}`)
         setTimeout(() => {
-            if (!this.standAlone) this.initalizeShardData();
+            if (!this.standAlone) this.initializeShardData();
         }, 5000) 
     }
 
@@ -272,7 +272,7 @@ class BridgeServer extends Server {
     * Based on the User provided Data a Shard List, ShardCount and a ShardCluster List is created.
     * @return {array} shardClusterList - The shardClusterList, which should be spaned on the MachineClient's
     */
-    async initalizeShardData() {
+    async initializeShardData() {
         if (this.totalShards === 'auto' && !this.shardList) {
             if (!this.token) throw new Error('CLIENT_MISSING_OPTION', 'A token must be provided when getting shard count on auto', 'Add the Option token: DiscordBOTTOKEN');
             this.totalShards = await Util.fetchRecommendedShards(this.token, 1000);
